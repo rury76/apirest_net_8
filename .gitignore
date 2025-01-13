@@ -1,0 +1,47 @@
+# Archivos de compilación
+bin/
+obj/
+
+# Archivos de configuración del entorno de desarrollo
+.vs/
+.vscode/
+.idea/
+
+# Archivos de configuración de usuario de Visual Studio
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Archivos de configuración de usuario de Rider
+.idea/
+
+# Archivos de configuración de usuario de Visual Studio Code
+.vscode/
+
+# Archivos temporales
+*.log
+*.tmp
+*.bak
+
+# Carpetas de dependencias de paquetes
+node_modules/
+# Archivos de bases de datos locales
+db.sqlite
+*.db
+
+# Certificados SSL/LLAVE/Archivos relacionados
+*.pfx
+*.pem
+
+# Archivos binarios
+*.dll
+*.exe
+*.so
+*.dylib
+*.pdb
+*.cache
+
+# Carpetas específicas de OS
+Thumbs.db
+Desktop.ini
