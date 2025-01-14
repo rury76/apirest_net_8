@@ -1,4 +1,4 @@
-using backendWebApi.Models.UsuarioModel;
+using backendWebApi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

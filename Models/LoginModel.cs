@@ -1,4 +1,4 @@
-namespace backendWebApi.Models.LoginModel {
+namespace backendWebApi.Models {
     public class LoginModel {
         public string UserName { get; set;}
         public string Password { get; set;}

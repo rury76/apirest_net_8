@@ -1,4 +1,4 @@
-namespace backendWebApi.Models.UsuarioModel {
+namespace backendWebApi.Models {
     class usuarioModel {
         public string name { get; set; }
         public string email { get; set; }
