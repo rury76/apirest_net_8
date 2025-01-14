@@ -7,7 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace backendWebApi.Controllers
 {
-    public class TokenController(WebApplication app, string llave, string validIssuer, string validAudience)
+    public class TokenController(WebApplication app, string? llave, string validIssuer, string validAudience)
     {
         public void Incializar()
         {

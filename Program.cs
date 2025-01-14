@@ -3,11 +3,24 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using backendWebApi.Controllers;
 
-const string llave = "X37afsghi**&&EfGHVC14528dsuayt712";
-const string validIssuer = "backend";
-const string validAudience = "usuarios";
-
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+builder.Configuration.AddJsonFile(
+    $"appsettings.{builder.Environment.EnvironmentName}.json", 
+    optional: true, 
+    reloadOnChange: true
+);
+
+var llave = builder.Configuration["settings:llave"];
+var validIssuer = builder.Configuration["settings:validIssuer"];
+var validAudience = builder.Configuration["settings:validAudience"];
+
+if (string.IsNullOrEmpty(llave)) throw new ApplicationException("llave is null");
+if (string.IsNullOrEmpty(validIssuer)) throw new ApplicationException("validIssuer is null");
+if (string.IsNullOrEmpty(validAudience)) throw new ApplicationException("validAudience is null");
+
+Console.WriteLine($"Entorno de ejecución de {builder.Environment.ApplicationName}: {builder.Environment.EnvironmentName}");
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -24,6 +37,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 builder.Services.AddAuthorization();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -36,13 +50,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
-var token = new TokenController(app, llave, validIssuer, validAudience);
-token.Incializar();
-var usuarioControleller = new UsuariosController(app);
-usuarioControleller.Incializar();
+new TokenController(app, llave, validIssuer, validAudience).Incializar();
+new UsuariosController(app).Incializar();
 
 app.Run();
 
