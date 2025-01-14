@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using backendWebApi.Controllers.UsuariosController;
-using backendWebApi.Controllers.TokenController;
+using backendWebApi.Controllers;
 
-string llave = "X37afsghi**&&EfGHVC14528dsuayt712";
-string validIssuer = "backend";
-string validAudience = "usuarios";
+const string llave = "X37afsghi**&&EfGHVC14528dsuayt712";
+const string validIssuer = "backend";
+const string validAudience = "usuarios";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,9 +39,9 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-TokenController token = new TokenController(app, llave, validIssuer, validAudience);
+var token = new TokenController(app, llave, validIssuer, validAudience);
 token.Incializar();
-UsuariosController usuarioControleller = new UsuariosController(app);
+var usuarioControleller = new UsuariosController(app);
 usuarioControleller.Incializar();
 
 app.Run();
